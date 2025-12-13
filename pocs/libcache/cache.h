@@ -1,5 +1,4 @@
-#ifndef _CACHEUTILS_H_
-#define _CACHEUTILS_H_
+#pragma once
 
 #include <assert.h>
 #include <unistd.h>
@@ -18,9 +17,9 @@
 /* ============================================================
  *                    User configuration
  * ============================================================ */
-static size_t CACHE_MISS = 0;
-static size_t pagesize = 0;
-char *mem;
+extern size_t CACHE_MISS;
+extern size_t pagesize;
+extern char *mem;
 
 #define USE_RDTSC_BEGIN_END     0
 
@@ -157,7 +156,7 @@ size_t detect_flush_reload_threshold();
 void maccess_speculative(void* ptr);
 
 // ---------------------------------------------------------------------------
-jmp_buf trycatch_buf;
+static jmp_buf trycatch_buf;
 
 // ---------------------------------------------------------------------------
 void unblock_signal(int signum __attribute__((__unused__)));
@@ -182,4 +181,3 @@ void cache_decode_pretty(char *leaked, int index);
 
 // ---------------------------------------------------------------------------
 void flush_shared_memory();
-#endif

@@ -5,7 +5,7 @@
 #include <string.h>
 #include <unistd.h>
 
-#include "../../../libcache/cacheutils.h"
+#include "../../../libcache/cache.h"
 
 // accessible data
 #define DATA "data|"

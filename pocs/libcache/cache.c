@@ -1,5 +1,9 @@
 #include "cache.h"
 
+size_t CACHE_MISS = 0;
+size_t pagesize = 0;
+char *mem = NULL;
+
 // ---------------------------------------------------------------------------
 void perf_init() {
   static struct perf_event_attr attr;
@@ -322,7 +326,7 @@ void nospec() { asm volatile( "hwsync" ); }
 
 // ---------------------------------------------------------------------------
 int flush_reload(void *ptr) {
-  uint64_t start = 0, end = 0;
+  volatile uint64_t start = 0, end = 0;
 
 #if USE_RDTSC_BEGIN_END
   start = rdtsc_begin();
